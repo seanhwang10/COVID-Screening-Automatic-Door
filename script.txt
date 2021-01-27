@@ -1,0 +1,19 @@
+Major milestones and timeline for our project. 
+
+- First milestone that we're trying to be on is deciding on which hardware to build our system on as well as the equipments. 
+- We need a CPU that is python compatable, which will be used to control our entire system. - Raspberri pi is our strongest candidate up till now, because arduino won't be strong enough to power deep learning and image processing. If in case we need more power, we are considering a switch to Jetson NANO developer's board. 
+- We will also need a camera sensor for image recognition. 
+- Then, a thermal sensor for temperature checking system, relays and servo motors for automatic door  are required for our project. We'll decide on these hardwares by week 2. 
+
+Completing the software for mask detector. 
+
+- We'll use an open source python conputer vision library called OPEN CV to analyze the image from camera to detect people with masks on. The mask detector will have a pre-made cascade from deep learning. It will be trained with set of images of people with masks on and those who do not. 
+- Our goal for week 4 is to have the core software (deep learning capable mask detector) built and running, 
+
+- So this leads to our next milestone, which is adding the temperature detector to the core software
+
+
+Our final product will look something like this. The image on the right is just a prototype design that one of our members Hayley has drawn, which basically shows the GIST of what our device will be equipped with. 
+
+- The device will have a camera... 
+- Whenever someone tries to open the door, he/she will ne
