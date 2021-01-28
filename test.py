@@ -1,18 +1,18 @@
 import numpy as np
 import cv2
-import random
+# import random
 
 # multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
 
-face_cascade = cv2.CascadeClassifier('data\\xml\\haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('data\\xml\\haarcascade_eye.xml')
-mouth_cascade = cv2.CascadeClassifier('data\\xml\\haarcascade_mcs_mouth.xml')
-upper_body = cv2.CascadeClassifier('data\\xml\\haarcascade_upperbody.xml')
+face_cascade = cv2.CascadeClassifier('cascades/haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('cascades/haarcascade_eye.xml')
+mouth_cascade = cv2.CascadeClassifier('cascades/haarcascade_mcs_mouth.xml')
+upper_body = cv2.CascadeClassifier('cascades/haarcascade_upperbody.xml')
 
 
 
 # Adjust threshold value in range 80 to 105 based on your light.
-bw_threshold = 80
+bw_threshold = 90
 
 # User message
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -40,7 +40,7 @@ while 1:
     #cv2.imshow('black_and_white', black_and_white)
 
     # detect face
-    faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    faces = face_cascade.detectMultiScale(gray, 1.2, 4)
 
     # Face prediction for black and white
     faces_bw = face_cascade.detectMultiScale(black_and_white, 1.1, 4)
@@ -78,10 +78,7 @@ while 1:
 
     # Show frame with results
     cv2.imshow('Mask Detection', img)
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# Release video
-cap.release()
-cv2.destroyAllWindows()
+
