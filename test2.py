@@ -7,6 +7,8 @@ import numpy as np
 import time
 from datetime import datetime
 
+# img = cv2.imgread(0)
+
 
 faceCascade = cv2.CascadeClassifier('cascades/haarcascade_frontalface_default.xml')
 model = load_model("cascades/mask_recog_ver2.h5")
