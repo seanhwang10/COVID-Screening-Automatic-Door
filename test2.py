@@ -7,7 +7,7 @@ import numpy as np
 import time
 from datetime import datetime
 
-# img = cv2.imgread(0)
+img = cv2.imread(0)
 
 
 faceCascade = cv2.CascadeClassifier('cascades/haarcascade_frontalface_default.xml')

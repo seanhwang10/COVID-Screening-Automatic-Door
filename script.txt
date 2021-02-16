@@ -17,3 +17,25 @@ Our final product will look something like this. The image on the right is just 
 
 - The device will have a camera... 
 - Whenever someone tries to open the door, he/she will ne
+
+
+
+------------------------------------------------------------------------------- 
+Solution Proposal: 
+
+Slide 8: 
+
+Shown above is the system level block diagram for our project. We have differentiated hardware and software modules by using square and diamond shape respectively. 
+
+- The two input to the system is made from the camera and the infrared sensor. Images from the camera will be fed into the mask detector where the neural network is already modeled from training images. The mask detector module will process the image to scan for a mask, and sends the necessafy data to the master controller. 
+
+- On the other side, infrared sensor will send in the temperature data to the temperature checker module, where it process the data to isolate the user's temperature from surrounding temperatures. The data will then be sent to the master controller, and the master controller will determine which message to display on the screen as well as whether or not to send a command to the door controller triggering the automatic door. 
+
+
+Slide 9: 
+
+Shown on this slide is a more in depth activity diagram of our system. 
+1. System starts when a user is detected. Temp checker, Mask detector will start operating Simultaeniouly. 
+2. What's worth noting in this slide is how our CPU or our master controller operates. 
+- As we've presented in previous slides, there are two inputs to the master controller. 
+- CPU will check the data from the 
