@@ -48,7 +48,7 @@ while 1:
 
     if(len(faces) == 0 and len(faces_bw) == 0):
         cv2.putText(img, "TEST: no face", org, font, font_scale, weared_mask_font_color, thickness, cv2.LINE_AA)
-    elif(len(faces) == 0 and len(faces_bw) q== 1):
+    elif(len(faces) == 0 and len(faces_bw) == 1):
         # It has been observed that for white mask covering mouth, with gray image face prediction is not happening
         cv2.putText(img, weared_mask, org, font, font_scale, weared_mask_font_color, thickness, cv2.LINE_AA)
     else:
