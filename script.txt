@@ -18,7 +18,7 @@ Our final product will look something like this. The image on the right is just 
 - The device will have a camera... 
 - Whenever someone tries to open the door, he/she will ne
 
-
+https://www.tomshardware.com/how-to/raspberry-pi-face-mask-detector
 
 ------------------------------------------------------------------------------- 
 Solution Proposal: 
