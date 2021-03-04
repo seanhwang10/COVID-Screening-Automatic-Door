@@ -18,8 +18,6 @@ Our final product will look something like this. The image on the right is just 
 - The device will have a camera... 
 - Whenever someone tries to open the door, he/she will ne
 
-https://www.tomshardware.com/how-to/raspberry-pi-face-mask-detector
-
 ------------------------------------------------------------------------------- 
 Solution Proposal: 
 
@@ -39,3 +37,5 @@ Shown on this slide is a more in depth activity diagram of our system.
 2. What's worth noting in this slide is how our CPU or our master controller operates. 
 - As we've presented in previous slides, there are two inputs to the master controller. 
 - CPU will check the data from the 
+
+https://www.tomshardware.com/how-to/raspberry-pi-face-mask-detector
