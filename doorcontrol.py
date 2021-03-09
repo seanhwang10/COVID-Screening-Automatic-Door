@@ -1,4 +1,3 @@
-PHP:
 import RPi.GPIO as GPIO   # We need this library to access GPIO pins
 from time import sleep
 
