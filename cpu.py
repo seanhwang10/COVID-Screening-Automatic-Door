@@ -12,12 +12,14 @@ while True:
 
     # Test values for now..
     # Temp values will be measured from IR sensor
+    cv2.putText(img, "Temp: 36.5C (test)", (460, 120), cv2.FONT_ITALIC, 0.6, (0, 255, 0), 2)  # font
 
-    cv2.putText(img, "Temperature: 36.5C", (5, 120), cv2.FONT_ITALIC, 0.6, (0, 255, 0), 2)  # font
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cv2.putText(img, "Checking Temp...", (5, 120), cv2.FONT_ITALIC, 0.6, (0, 255, 0), 2)  # font
+    else:
+        cv2.putText(img, "Please come closer!", (5, 120), cv2.FONT_ITALIC, 0.6, (0, 0, 255), 2)  # font
 
 
     cv2.imshow("display", img)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
 
