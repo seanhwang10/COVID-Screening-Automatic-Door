@@ -1,54 +1,47 @@
+# Import libraries
 import RPi.GPIO as GPIO
-from time import sleep
+import time
 
-doordet = 1
-
+# Set GPIO numbering mode
 GPIO.setmode(GPIO.BOARD)
 
-Motor1A = 16
-Motor1B = 18
-Motor1E = 22
+# Set pin 11 as an output, and set servo1 as pin 11 as PWM
+GPIO.setup(11,GPIO.OUT)
+servo1 = GPIO.PWM(11,50) # Note 11 is pin, 50 = 50Hz pulse
 
-LimitSwitchDown = 11
-LimitSwitchUp = 12
+#start PWM running, but with value of 0 (pulse off)
+servo1.start(0)
+print ("Waiting for 2 seconds")
+time.sleep(2)
 
-GPIO.setup(Motor1A, GPIO.OUT)
-GPIO.setup(Motor1B, GPIO.OUT)
-GPIO.setup(Motor1E, GPIO.OUT)
-GPIO.setup(LimitSwitchDown, GPIO.IN) # Note that we are listening to both limit switches
-GPIO.setup(LimitSwitchUp, GPIO.IN)
+#Let's move the servo!
+print ("Rotating 180 degrees in 10 steps")
 
-print ("Turning motor on")
+# Define variable duty
+duty = 2
 
-GPIO.output(Motor1A, GPIO.HIGH) # Note that the polarity is reversed with respect to "openLimit.py"
-GPIO.output(Motor1B, GPIO.LOW)
-GPIO.output(Motor1E, GPIO.HIGH) # Activate the motor
+# Loop for duty values from 2 to 12 (0 to 180 degrees)
+while duty <= 12:
+    servo1.ChangeDutyCycle(duty)
+    time.sleep(1)
+    duty = duty + 1
 
-maxDur = 150
-curDur = 0
-pollInterval = 0.001
+# Wait a couple of seconds
+time.sleep(2)
 
-# Again loop for a maximum of 150 seconds by checking the status the switches
-while curDur <= maxDur:
-    if doordet == 0:
-        roomToGoDown = GPIO.input(LimitSwitchDown)
-    if doordet == 1:
-        roomToGoUp = GPIO.input(LimitSwitchUp)
+# Turn back to 90 degrees
+print ("Turning back to 90 degrees for 2 seconds")
+servo1.ChangeDutyCycle(7)
+time.sleep(2)
 
-    if roomToGoUp == 0: # The top is wound back on the reel, so we must reverse
-        # Reverse direction
-        GPIO.output(Motor1A, GPIO.LOW)
-        GPIO.output(Motor1B, GPIO.HIGH)
-        sleep(1) # allow time for the switch to be released
-        curDur = 0; # reset timer to give another 150 seconds
+#turn back to 0 degrees
+print ("Turning back to 0 degrees")
+servo1.ChangeDutyCycle(2)
+time.sleep(0.5)
+servo1.ChangeDutyCycle(0)
 
-    if roomToGoDown == 0: # The door is closed
-        break
-
-    sleep(pollInterval)
-    curDur = curDur + pollInterval
-
-print ("Stopping motor")
-
-GPIO.output(Motor1E, GPIO.LOW) # Deactivate the motor
+#Clean things up at the end
+servo1.stop()
 GPIO.cleanup()
+print ("Goodbye")
+
