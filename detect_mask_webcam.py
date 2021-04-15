@@ -9,6 +9,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
 from imutils.video import VideoStream
+import RPi.GPIO as GPIO
 import numpy as np
 import argparse
 import imutils
@@ -39,6 +40,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			(startX, startY) = (max(0, startX), max(0, startY))
 			(endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
+			# extract the face ROI, convert it from BGR to RGB channel
 			face = frame[startY:endY, startX:endX]
 			face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
 			face = cv2.resize(face, (224, 224))
@@ -66,9 +68,32 @@ ap.add_argument("-c", "--confidence", type=float, default=0.5,
 	help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 
+#Reset Door variable
+door = 0
+
+# Set GPIO numbering mode
+GPIO.setmode(GPIO.BOARD)
+
+# Set pin 11 as an output, and set servo1 as pin 11 as PWM
+GPIO.setup(11,GPIO.OUT)
+servo1 = GPIO.PWM(11,50) # Note 11 is pin, 50 = 50Hz pulse
+
+#start PWM running, but with value of 0 (pulse off)
+servo1.start(0)
 
 print("Welcome! Launching COVIDoor...")
 time.sleep(2.0)
+print("[COVIDoor] Initializing servo motor location...")
+servo1.start(0)
+time.sleep(3)
+servo1.ChangeDutyCycle(6) #Door Open
+print("[TEST] Door OPENING...")
+time.sleep(3)
+
+print ("[Test] Door CLOSING...")
+servo1.ChangeDutyCycle(2)
+time.sleep(0.5)
+servo1.ChangeDutyCycle(0)
 
 # load our serialized face detector model from disk
 print("[COVIDoor] loading face detector model...")
@@ -105,15 +130,43 @@ while True:
 			label = "Mask ON"
 			print("[COVIDoor] Mask has been Detected || mask_on == '1' ")
 			color = (0, 255, 0)
+			dooropen = 1
+			doorclose = 0
+
 
 		else:
 			label = "Mask OFF. Please wear a mask to enter"
 			print("[COVIDoor] No mask!! || mask_on == '0' ")
 			color = (0, 0, 255)
-		
+			dooropen = 0
+			doorclose = 1
+
+			
+
+			
 		cv2.putText(frame, label, (startX-50, startY - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+		
+
+	if dooropen:
+		door = 3
+		
+	if doorclose:
+		if door != 0:
+			door = door - 1
+		
+	if door > 0:
+		servo1.ChangeDutyCycle(6)
+		print("Door open")
+	else:
+		servo1.ChangeDutyCycle(2)
+		time.sleep(0.5)
+		servo1.ChangeDutyCycle(0)
+		print("Door close")
+		
+
+        
 
 	# show the output frame
 	cv2.imshow("Face Mask Detector", frame)
@@ -124,3 +177,4 @@ while True:
 
 cv2.destroyAllWindows()
 vs.stop()
+
