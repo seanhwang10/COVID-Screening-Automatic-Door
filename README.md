@@ -40,7 +40,7 @@ COVIDoor operates in the following sequence: User Recognition, Mask Detection, T
 
 ### Entire system operation 
 
-We have set up a demonstration of our system using a door built with a small servo motor and straws. Obviously, this would need more improvements on the motor choice and the door will need to be made with something much stronger, for it to be actually be used in real life :) 
+We have built a small demonstration of our system using a door built with a small servo motor and straws. Obviously, this would need more improvements on the motor choice and the door will need to be made with something much stronger, for it to be actually be used in real life :) 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/demo_setup.JPG)
 
