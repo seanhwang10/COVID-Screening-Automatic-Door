@@ -18,19 +18,31 @@ Studies have shown that wearing a face mask can reduce the spreading of ongoing 
 
 ## Operation 
 
+COVIDoor operates in the following sequence: User Recognition, Mask Detection, Temperature Checking, and Door Operation. 
+
+(OP_sequence)
+
 1. User recognition 
 
-![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/freegifmaker.me_2hdB3.gif) 
+(initial recog)
 
 2. Mask Detection 
 
-
+(mask)
 
 3. Temperature Checking 
 
 
 
 4. Automatic Door Operation 
+
+
+
+### Entire system operation 
+
+We have set up a demonstration of our system using a door built with a small servo motor and straws. Obviously, this would need more improvements on the motor choice and the door will need to be made with something much stronger, for it to be actually be used in real life :) 
+
+
 
 
 
