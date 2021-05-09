@@ -16,6 +16,24 @@ Studies have shown that wearing a face mask can reduce the spreading of ongoing 
 
 
 
+## Operation 
+
+1. User recognition 
+
+![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/freegifmaker.me_2hdB3.gif) 
+
+2. Mask Detection 
+
+
+
+3. Temperature Checking 
+
+
+
+4. Automatic Door Operation 
+
+
+
 ## Acknowledgements 
 
 **Caroline Dunn**, on setting up Mask Detector on Raspberry Pi. 
