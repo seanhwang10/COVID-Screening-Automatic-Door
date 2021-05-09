@@ -1,6 +1,6 @@
 # Written by: Sean Hwang
 # COVIDoor - COVID Screening Automatic Door
-# Mask Detector Software
+# Mask Detector, Door control Software 
 
 #-------------------------------------#
 
