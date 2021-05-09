@@ -18,7 +18,7 @@ Studies have shown that wearing a face mask can reduce the spreading of ongoing 
 
 COVIDoor operates in the following sequence: 
 
-User Recognition, Mask Detection, Temperature Checking, and Door Operation. 
+**User Recognition, Mask Detection, Temperature Checking, and Door Operation.** 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/operation_sequence.JPG)
 
