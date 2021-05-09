@@ -32,7 +32,7 @@ Message: *"Welcome! Please wear a mask to enter"*
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/mask_detect.gif)
 
-Message: *"Please fit your face to the circle"*
+```Message: *"Please fit your face to the circle"*`
 
 We designed a guiding circle to lead the users to come closer to the IR sensor for a more accurate temperature measurement. 
 
