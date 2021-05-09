@@ -22,21 +22,21 @@ COVIDoor operates in the following sequence:
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/operation_sequence.JPG)
 
-1. **User recognition** 
+1. <u>**User recognition**</u> 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/initial_face_recognition.gif)
 
 Message: *"Welcome! Please wear a mask to enter"*
 
-2. **Mask Detection** 
+2. <u>**Mask Detection**</u> 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/mask_detect.gif)
 
-```Message: *"Please fit your face to the circle"*`
+Message: *"Please fit your face to the circle"*
 
 We designed a guiding circle to lead the users to come closer to the IR sensor for a more accurate temperature measurement. 
 
-3. **Temperature Checking** 
+3. <u>**Temperature Checking**</u> 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/temperature.gif)
 
@@ -46,7 +46,7 @@ Success: *"Thank you! Please enter"*
 
 Failure: *"Your temperature is too high (low)"*
 
-4. **Automatic Door Operation** 
+4. <u>**Automatic Door Operation**</u> 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/dooropen.gif)
 
