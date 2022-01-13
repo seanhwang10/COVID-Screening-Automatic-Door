@@ -21,10 +21,8 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	(h, w) = frame.shape[:2]
 	blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),
 		(104.0, 177.0, 123.0))
-
 	faceNet.setInput(blob)
 	detections = faceNet.forward()
-
 	faces = []
 	locs = []
 	preds = []
@@ -32,11 +30,9 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	# loop over the detections
 	for i in range(0, detections.shape[2]):
 		confidence = detections[0, 0, i, 2]
-
 		if confidence > args["confidence"]:
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 			(startX, startY, endX, endY) = box.astype("int")
-
 			(startX, startY) = (max(0, startX), max(0, startY))
 			(endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
@@ -46,7 +42,6 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			face = cv2.resize(face, (224, 224))
 			face = img_to_array(face)
 			face = preprocess_input(face)
-
 			faces.append(face)
 			locs.append((startX, startY, endX, endY))
 
@@ -89,7 +84,6 @@ time.sleep(3)
 servo1.ChangeDutyCycle(6) #Door Open
 print("[TEST] Door OPENING...")
 time.sleep(3)
-
 print ("[Test] Door CLOSING...")
 servo1.ChangeDutyCycle(2)
 time.sleep(0.5)
@@ -111,51 +105,40 @@ print("[COVIDoor] starting video ...")
 
 vs = VideoStream(src=0).start()
 time.sleep(1.0)
-
 print("[COVIDoor] System On.")
 
 # loop over the frames from the video stream
 while True:
 	frame = vs.read()
 	frame = imutils.resize(frame, width=500)
-
 	(locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
-
 	for (box, pred) in zip(locs, preds):
 		# unpack the bounding box and predictions
 		(startX, startY, endX, endY) = box
 		(mask, withoutMask) = pred
-
 		if mask > withoutMask:
 			label = "Mask ON"
 			print("[COVIDoor] Mask has been Detected || mask_on == '1' ")
 			color = (0, 255, 0)
 			dooropen = 1
 			doorclose = 0
-
-
 		else:
 			label = "Mask OFF. Please wear a mask to enter"
 			print("[COVIDoor] No mask!! || mask_on == '0' ")
 			color = (0, 0, 255)
 			dooropen = 0
 			doorclose = 1
-
-			
-
 			
 		cv2.putText(frame, label, (startX-50, startY - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 		
-
 	if dooropen:
 		door = 3
 		
 	if doorclose:
 		if door != 0:
 			door = door - 1
-		
 	if door > 0:
 		servo1.ChangeDutyCycle(6)
 		print("Door open")
@@ -164,17 +147,12 @@ while True:
 		time.sleep(0.5)
 		servo1.ChangeDutyCycle(0)
 		print("Door close")
-		
-
-        
 
 	# show the output frame
 	cv2.imshow("Face Mask Detector", frame)
 	key = cv2.waitKey(1) & 0xFF
-
 	if key == ord("q"):
 		break
-
+		
 cv2.destroyAllWindows()
 vs.stop()
-
