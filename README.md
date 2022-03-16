@@ -1,6 +1,6 @@
 # COVID-Screening-Automatic-Door
 
-This is a senior design (graduation) project of my team in Purdue school of Electrical and Computer Engineering. 
+This is a senior design (graduation) project of my team in Purdue Univ school of Electrical and Computer Engineering. 
 
 ![](https://github.com/seanhwang10/COVID-Screening-Automatic-Door/blob/main/images/overall_diagram.jpg)
 
