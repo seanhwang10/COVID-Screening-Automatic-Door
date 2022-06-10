@@ -3,11 +3,11 @@ from time import sleep
 
 GPIO.setmode(GPIO.BOARD)
 
-Motor1A = 16  # These are the GPIO pin numbers that we will use
-Motor1B = 18
-Motor1E = 22
+Motor1A = 10  # These are the GPIO pin numbers that we will use
+Motor1B = 12
+Motor1E = 16
 
-LimitSwitchUp = 12 # The limit switch is connected to this pin
+LimitSwitchUp = 5 # The limit switch is connected to this pin
 
 GPIO.setup(Motor1A, GPIO.OUT)       # OUT means we will output to this pin
 GPIO.setup(Motor1B, GPIO.OUT)
